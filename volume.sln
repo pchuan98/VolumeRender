@@ -5,6 +5,22 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolumeRender", "src\VolumeRender\VolumeRender.csproj", "{EE991F83-7E6C-4341-9A13-DE0D5A07CFD9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixToolkit.Wpf.SharpDX", "externals\HelixToolkit.Wpf.SharpDX\HelixToolkit.Wpf.SharpDX.csproj", "{642589A8-0276-161A-6B19-5253F7136872}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HelixToolkit.SharpDX.Shared", "externals\HelixToolkit.SharpDX.Shared\HelixToolkit.SharpDX.Shared.shproj", "{1EAF532E-D750-497B-BB8F-EE85359C78A2}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HelixToolkit.Shared", "externals\HelixToolkit.Shared\HelixToolkit.Shared.shproj", "{4EE18E80-7609-4FFF-BD4B-F02728EC0688}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HelixToolkit.SharpDX.SharedModel", "externals\HelixToolkit.SharpDX.SharedModel\HelixToolkit.SharpDX.SharedModel.shproj", "{1AEFCB64-E997-425A-8C84-DC93263CC4A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixToolkit.Wpf.SharpDX.Assimp", "externals\HelixToolkit.Wpf.SharpDX.Assimp\HelixToolkit.Wpf.SharpDX.Assimp.csproj", "{473CD1EB-9FF4-6DAA-1FBB-29A6BE0C569B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HelixToolkit.SharpDX.Assimp.Shared", "externals\HelixToolkit.SharpDX.Assimp.Shared\HelixToolkit.SharpDX.Assimp.Shared.shproj", "{28E42939-814F-4E08-9CB1-69B493605DB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixToolkit.Native.ShaderBuilder", "externals\HelixToolkit.Native.ShaderBuilder\HelixToolkit.Native.ShaderBuilder.csproj", "{1B684238-2EA2-FD1E-861C-0621479C269F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +31,42 @@ Global
 		{EE991F83-7E6C-4341-9A13-DE0D5A07CFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE991F83-7E6C-4341-9A13-DE0D5A07CFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE991F83-7E6C-4341-9A13-DE0D5A07CFD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{642589A8-0276-161A-6B19-5253F7136872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{642589A8-0276-161A-6B19-5253F7136872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{642589A8-0276-161A-6B19-5253F7136872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{642589A8-0276-161A-6B19-5253F7136872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{473CD1EB-9FF4-6DAA-1FBB-29A6BE0C569B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473CD1EB-9FF4-6DAA-1FBB-29A6BE0C569B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473CD1EB-9FF4-6DAA-1FBB-29A6BE0C569B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473CD1EB-9FF4-6DAA-1FBB-29A6BE0C569B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B684238-2EA2-FD1E-861C-0621479C269F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B684238-2EA2-FD1E-861C-0621479C269F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B684238-2EA2-FD1E-861C-0621479C269F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B684238-2EA2-FD1E-861C-0621479C269F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{642589A8-0276-161A-6B19-5253F7136872} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{1EAF532E-D750-497B-BB8F-EE85359C78A2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4EE18E80-7609-4FFF-BD4B-F02728EC0688} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{1AEFCB64-E997-425A-8C84-DC93263CC4A7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{473CD1EB-9FF4-6DAA-1FBB-29A6BE0C569B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{28E42939-814F-4E08-9CB1-69B493605DB6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{1B684238-2EA2-FD1E-861C-0621479C269F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA5F99DD-EC03-4497-B552-27715F591AF4}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		externals\HelixToolkit.SharpDX.SharedModel\HelixToolkit.SharpDX.SharedModel.projitems*{1aefcb64-e997-425a-8c84-dc93263cc4a7}*SharedItemsImports = 13
+		externals\HelixToolkit.SharpDX.Shared\HelixToolkit.SharpDX.Shared.projitems*{1eaf532e-d750-497b-bb8f-ee85359c78a2}*SharedItemsImports = 13
+		externals\HelixToolkit.SharpDX.Assimp.Shared\HelixToolkit.SharpDX.Assimp.Shared.projitems*{28e42939-814f-4e08-9cb1-69b493605db6}*SharedItemsImports = 13
+		externals\HelixToolkit.SharpDX.Assimp.Shared\HelixToolkit.SharpDX.Assimp.Shared.projitems*{473cd1eb-9ff4-6daa-1fbb-29a6be0c569b}*SharedItemsImports = 5
+		externals\HelixToolkit.Shared\HelixToolkit.Shared.projitems*{4ee18e80-7609-4fff-bd4b-f02728ec0688}*SharedItemsImports = 13
+		externals\HelixToolkit.Shared\HelixToolkit.Shared.projitems*{642589a8-0276-161a-6b19-5253f7136872}*SharedItemsImports = 5
+		externals\HelixToolkit.SharpDX.SharedModel\HelixToolkit.SharpDX.SharedModel.projitems*{642589a8-0276-161a-6b19-5253f7136872}*SharedItemsImports = 5
+		externals\HelixToolkit.SharpDX.Shared\HelixToolkit.SharpDX.Shared.projitems*{642589a8-0276-161a-6b19-5253f7136872}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

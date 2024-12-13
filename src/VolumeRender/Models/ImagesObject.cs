@@ -42,7 +42,7 @@ public partial class ImagesObject : ObservableObject
     /// <summary>
     /// 图像的范围
     /// </summary>
-    public int ImageCount => Images?.Length ?? 0;
+    public int ImageCount => Images?.Length - 1 ?? 0;
 
     /// <summary>
     /// 当前选择的图像

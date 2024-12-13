@@ -5,6 +5,12 @@ namespace VolumeRender.Extensions;
 
 public static class MatExtension
 {
+    /// <summary>
+    /// 转成8u类型，通道不变
+    /// </summary>
+    /// <param name="mat"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public static Mat ToU8(this Mat mat)
     {
         Mat dst;
@@ -13,6 +19,35 @@ public static class MatExtension
             dst = mat;
         else if (mat.Depth() == 2 && mat.Channels() == 1)
             dst = mat.Normalize(256, 0, NormTypes.MinMax, MatType.CV_8U);
+        else throw new ArgumentException();
+
+        return dst;
+    }
+
+    /// <summary>
+    /// 转换成为32单通道类型
+    /// </summary>
+    /// <param name="mat"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static Mat ToF32(this Mat mat)
+    {
+        var dst = new Mat();
+
+        if (mat.Depth() == 0)
+        {
+            var channel = mat.Channels();
+            if (channel == 1)
+                mat.ConvertTo(dst, MatType.CV_32FC1, 1f / byte.MaxValue);
+            else throw new ArgumentException();
+        }
+        else if (mat.Depth() == 2)
+        {
+            var channel = mat.Channels();
+            if (channel == 1)
+                mat.ConvertTo(dst, MatType.CV_32FC1, 1f / ushort.MaxValue);
+            else throw new ArgumentException();
+        }
         else throw new ArgumentException();
 
         return dst;
@@ -86,9 +121,9 @@ public static class MatExtension
         if (img.Type() != MatType.CV_8UC1) return img;
         if (gamma is <= 0 or > 10) return img;
 
-        var center = 5;
+        var scale = 5;
 
-        gamma = gamma <= 1 ? gamma * center : center + (gamma - 1) * (center / 9.0);
+        gamma /= scale;
 
         var lut = new Mat(1, 256, MatType.CV_8U);
         for (var i = 0; i < 256; i++)

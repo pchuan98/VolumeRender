@@ -5,6 +5,7 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:behaviors="clr-namespace:VolumeRender.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dx="https://github.com/pchuan98/helix/dx"
     xmlns:liftui="https://github.com/pchuan98/Lift.UI"
     xmlns:local="clr-namespace:VolumeRender"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -31,8 +32,9 @@
                 FontWeight="Bold"
                 Foreground="Cyan" />
             <Menu Margin="10,0,0,0" Background="Transparent">
-                <MenuItem Header="File" />
+                <MenuItem Header="File" Click="MenuItem_OnClick"/>
                 <MenuItem Header="Tools" />
+                <MenuItem Command="{Binding TestCommand}" Header="Test" />
             </Menu>
         </StackPanel>
     </liftui:Window.NonClientAreaContent>
@@ -41,7 +43,7 @@
         <TabControl
             Margin="5"
             BorderThickness="0"
-            SelectedIndex="0"
+            SelectedIndex="1"
             Style="{DynamicResource TabControlSliding}">
             <TabItem Width="100" Header="Preview">
                 <Grid>
@@ -174,7 +176,40 @@
                     </liftui:SimplePanel>
                 </Grid>
             </TabItem>
-            <TabItem Width="100" Header="3D" />
+
+            <TabItem Width="100" Header="3D">
+                <dx:Viewport3DX
+                    x:Name="Viewport"
+                    Margin="5"
+                    BackgroundColor="#1C1C1C"
+                    Camera="{Binding Viewport.PerspectiveCamera}"
+                    CameraRotationMode="Trackball"
+                    EffectsManager="{Binding Viewport.Effects}"
+                    EnableDpiScale="True"
+                    InfiniteSpin="True"
+                    InfoBackground="Transparent"
+                    InfoForeground="White"
+                    ShowCameraInfo="False"
+                    ShowCameraTarget="False"
+                    ShowCoordinateSystem="False"
+                    ShowFrameDetails="False"
+                    ShowFrameRate="False"
+                    ShowTriangleCountInfo="False"
+                    ShowViewCube="False"
+                    UseDefaultGestures="False">
+                    <dx:Viewport3DX.InputBindings>
+                        <MouseBinding Command="dx:ViewportCommands.Rotate" Gesture="LeftClick" />
+                        <MouseBinding Command="dx:ViewportCommands.Pan" Gesture="RightClick" />
+                        <!--<MouseBinding Command="dx:ViewportCommands.ZoomExtents" Gesture="MiddleClick" />-->
+                    </dx:Viewport3DX.InputBindings>
+
+                    <dx:VolumeTextureModel3D
+                        x:Name="Model"
+                        IsHitTestVisible="False"
+                        Transform="{Binding Viewport.Transform}"
+                        VolumeMaterial="{Binding Viewport.Material}" />
+                </dx:Viewport3DX>
+            </TabItem>
         </TabControl>
     </Grid>
 </liftui:Window>

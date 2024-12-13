@@ -28,7 +28,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Controls\" />
 		<Folder Include="Views\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\externals\HelixToolkit.Wpf.SharpDX.Assimp\HelixToolkit.Wpf.SharpDX.Assimp.csproj" />
+	  <ProjectReference Include="..\..\externals\HelixToolkit.Wpf.SharpDX\HelixToolkit.Wpf.SharpDX.csproj" />
 	</ItemGroup>
 
 </Project>
