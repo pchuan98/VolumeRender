@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using OpenCvSharp;
 using VolumeRender.Models;
 using VolumeRender.ViewModels;
@@ -44,37 +46,54 @@ public partial class Shell
 
     private void MenuItem_OnClick(object sender, RoutedEventArgs e)
     {
-        Mat[] mats;
+        //Mat[] mats;
 
-        var value = index++ % 5;
+        //var value = index++ % 5;
 
-        switch (value)
+        //switch (value)
+        //{
+        //    case 0:
+        //        Cv2.ImReadMulti(@"D:\.test\motic\c0r.tif", out mats, ImreadModes.Unchanged);
+        //        break;
+        //    case 1:
+        //        Cv2.ImReadMulti(@"D:\.test\motic\c1.tif", out mats, ImreadModes.Unchanged);
+        //        break;
+        //    case 2:
+        //        Cv2.ImReadMulti(@"D:\.test\profiling001.tif", out mats, ImreadModes.Unchanged);
+        //        break;
+        //    case 3:
+        //        Cv2.ImReadMulti(@"D:\.test\pollen_8bit.tif", out mats, ImreadModes.Unchanged);
+        //        break;
+        //    case 4:
+        //        Cv2.ImReadMulti(@"D:\.test\profiling002.tif", out mats, ImreadModes.Unchanged);
+        //        break;
+        //    default:
+        //        throw new Exception();
+        //}
+
+        //DataContext = new ShellViewModel()
+        //{
+        //    ImagesObj = new ImagesObject()
+        //    {
+        //        Images = mats
+        //    }
+        //};
+
+        var dialog = new OpenFileDialog()
         {
-            case 0:
-                Cv2.ImReadMulti(@"D:\.test\motic\c0r.tif", out mats, ImreadModes.Unchanged);
-                break;
-            case 1:
-                Cv2.ImReadMulti(@"D:\.test\motic\c1.tif", out mats, ImreadModes.Unchanged);
-                break;
-            case 2:
-                Cv2.ImReadMulti(@"D:\.test\profiling001.tif", out mats, ImreadModes.Unchanged);
-                break;
-            case 3:
-                Cv2.ImReadMulti(@"D:\.test\pollen_8bit.tif", out mats, ImreadModes.Unchanged);
-                break;
-            case 4:
-                Cv2.ImReadMulti(@"D:\.test\profiling002.tif", out mats, ImreadModes.Unchanged);
-                break;
-            default:
-                throw new Exception();
-        }
-
-        DataContext = new ShellViewModel()
-        {
-            ImagesObj = new ImagesObject()
-            {
-                Images = mats
-            }
+            Multiselect = false
         };
+
+        if (dialog.ShowDialog() == true)
+        {
+            Cv2.ImReadMulti(dialog.FileName, out var mats, ImreadModes.Unchanged);
+            DataContext = new ShellViewModel()
+            {
+                ImagesObj = new ImagesObject()
+                {
+                    Images = mats
+                }
+            };
+        }
     }
 }

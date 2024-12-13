@@ -69,7 +69,7 @@ float4 main(VolumePS_INPUT input) : SV_Target
             float s = 1 - dot(normalize(value.xyz), -dir);
 				
 		//diffuse shading + fake ambient lighting
-            //src.rgb = s * src.rgb + .1f * src.rgb; // exclude useless env ligth
+            src.rgb = s * src.rgb + .1f * src.rgb;
 		
 		//Front to back blending
 		// dst.rgb = dst.rgb + (1 - dst.a) * src.a * src.rgb
@@ -83,7 +83,7 @@ float4 main(VolumePS_INPUT input) : SV_Target
 		
         lengthAccu += stepSize;
         //break if the position is greater than <1, 1, 1>
-        if (lengthAccu >= dirLength || dst.a > 0.95)
+        if (lengthAccu >= dirLength || dst.a > 0.5)
             break;
     }
  

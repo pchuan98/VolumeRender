@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixToolkit.Wpf.SharpDX", "externals\HelixToolkit.Wpf.SharpDX\HelixToolkit.Wpf.SharpDX.csproj", "{642589A8-0276-161A-6B19-5253F7136872}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1B684238-2EA2-FD1E-861C-0621479C269F} = {1B684238-2EA2-FD1E-861C-0621479C269F}
+	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HelixToolkit.SharpDX.Shared", "externals\HelixToolkit.SharpDX.Shared\HelixToolkit.SharpDX.Shared.shproj", "{1EAF532E-D750-497B-BB8F-EE85359C78A2}"
 EndProject

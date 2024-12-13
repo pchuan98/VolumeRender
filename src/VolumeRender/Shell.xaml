@@ -32,7 +32,7 @@
                 FontWeight="Bold"
                 Foreground="Cyan" />
             <Menu Margin="10,0,0,0" Background="Transparent">
-                <MenuItem Header="File" Click="MenuItem_OnClick"/>
+                <MenuItem Click="MenuItem_OnClick" Header="File" />
                 <MenuItem Header="Tools" />
                 <MenuItem Command="{Binding TestCommand}" Header="Test" />
             </Menu>
@@ -43,7 +43,6 @@
         <TabControl
             Margin="5"
             BorderThickness="0"
-            SelectedIndex="1"
             Style="{DynamicResource TabControlSliding}">
             <TabItem Width="100" Header="Preview">
                 <Grid>
@@ -178,37 +177,128 @@
             </TabItem>
 
             <TabItem Width="100" Header="3D">
-                <dx:Viewport3DX
-                    x:Name="Viewport"
-                    Margin="5"
-                    BackgroundColor="#1C1C1C"
-                    Camera="{Binding Viewport.PerspectiveCamera}"
-                    CameraRotationMode="Trackball"
-                    EffectsManager="{Binding Viewport.Effects}"
-                    EnableDpiScale="True"
-                    InfiniteSpin="True"
-                    InfoBackground="Transparent"
-                    InfoForeground="White"
-                    ShowCameraInfo="False"
-                    ShowCameraTarget="False"
-                    ShowCoordinateSystem="False"
-                    ShowFrameDetails="False"
-                    ShowFrameRate="False"
-                    ShowTriangleCountInfo="False"
-                    ShowViewCube="False"
-                    UseDefaultGestures="False">
-                    <dx:Viewport3DX.InputBindings>
-                        <MouseBinding Command="dx:ViewportCommands.Rotate" Gesture="LeftClick" />
-                        <MouseBinding Command="dx:ViewportCommands.Pan" Gesture="RightClick" />
-                        <!--<MouseBinding Command="dx:ViewportCommands.ZoomExtents" Gesture="MiddleClick" />-->
-                    </dx:Viewport3DX.InputBindings>
+                <liftui:SimplePanel>
+                    <dx:Viewport3DX
+                        x:Name="Viewport"
+                        Margin="5"
+                        BackgroundColor="#1C1C1C"
+                        Camera="{Binding Viewport.PerspectiveCamera}"
+                        CameraRotationMode="Trackball"
+                        EffectsManager="{Binding Viewport.Effects}"
+                        EnableDpiScale="True"
+                        InfiniteSpin="True"
+                        InfoBackground="Transparent"
+                        InfoForeground="White"
+                        ShowCameraInfo="False"
+                        ShowCameraTarget="False"
+                        ShowCoordinateSystem="False"
+                        ShowFrameDetails="False"
+                        ShowFrameRate="False"
+                        ShowTriangleCountInfo="False"
+                        ShowViewCube="False"
+                        UseDefaultGestures="False">
+                        <dx:Viewport3DX.InputBindings>
+                            <MouseBinding Command="dx:ViewportCommands.Rotate" Gesture="LeftClick" />
+                            <MouseBinding Command="dx:ViewportCommands.Pan" Gesture="RightClick" />
+                            <!--<MouseBinding Command="dx:ViewportCommands.ZoomExtents" Gesture="MiddleClick" />-->
+                        </dx:Viewport3DX.InputBindings>
 
-                    <dx:VolumeTextureModel3D
-                        x:Name="Model"
-                        IsHitTestVisible="False"
-                        Transform="{Binding Viewport.Transform}"
-                        VolumeMaterial="{Binding Viewport.Material}" />
-                </dx:Viewport3DX>
+                        <dx:VolumeTextureModel3D
+                            x:Name="Model"
+                            IsHitTestVisible="False"
+                            Transform="{Binding Viewport.Transform}"
+                            VolumeMaterial="{Binding Viewport.Material}" />
+                    </dx:Viewport3DX>
+
+                    <!--  右上角快捷设置  -->
+                    <StackPanel
+                        Margin="10"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Orientation="Vertical">
+
+                        <Viewbox Height="14" Margin="0,4">
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock Margin="10,0" Text="X" />
+                                <Slider
+                                    Width="200"
+                                    Maximum="2"
+                                    Minimum="0.01"
+                                    Value="{Binding Viewport.ScaleTransformX, Delay=10}" />
+                            </StackPanel>
+                        </Viewbox>
+
+                        <Viewbox Height="14" Margin="0,4">
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock Margin="10,0" Text="Y" />
+                                <Slider
+                                    Width="200"
+                                    Maximum="2"
+                                    Minimum="0.01"
+                                    Value="{Binding Viewport.ScaleTransformY, Delay=10}" />
+                            </StackPanel>
+                        </Viewbox>
+
+                        <Viewbox Height="14" Margin="0,4">
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock Margin="10,0" Text="Z" />
+                                <Slider
+                                    Width="200"
+                                    Maximum="2"
+                                    Minimum="0.01"
+                                    Value="{Binding Viewport.ScaleTransformZ, Delay=10}" />
+                            </StackPanel>
+                        </Viewbox>
+
+                        <Viewbox Height="14" Margin="0,4">
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock Margin="10,0" Text="A" />
+                                <Slider
+                                    Width="200"
+                                    Maximum="1"
+                                    Minimum="0"
+                                    Value="{Binding Viewport.MaterialAlpha, Delay=10}" />
+                            </StackPanel>
+                        </Viewbox>
+
+                        <Viewbox Height="14" Margin="0,4">
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock Margin="10,0" Text="S" />
+                                <Slider
+                                    Width="200"
+                                    Maximum="1"
+                                    Minimum="0"
+                                    Value="{Binding Viewport.IsoValue, Delay=10}" />
+                            </StackPanel>
+                        </Viewbox>
+
+
+                        <b:Interaction.Behaviors>
+                            <behaviors:MouseOpacityBehavior
+                                DurationFadeIn="0.2"
+                                DurationFadeOut="0.2"
+                                OpacityFadeIn="0.8"
+                                OpacityFadeOut="0.1"
+                                StartFadeIn="0"
+                                StartFadeOut="0" />
+                        </b:Interaction.Behaviors>
+                    </StackPanel>
+                </liftui:SimplePanel>
             </TabItem>
         </TabControl>
     </Grid>
